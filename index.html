@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Airdrop Hub v3.0</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+<h1>
+
+🚀 AIRDROP HUB
+
+</h1>
+
+<button id="addProjectBtn">
+
++ Add Project
+
+</button>
+
+</header>
+
+<section class="dashboard">
+
+<div class="card">
+
+<p>Today's Task</p>
+
+<h2 id="todayTask">
+
+0
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<p>Active Project</p>
+
+<h2 id="activeProject">
+
+0
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<p>Pending Project</p>
+
+<h2 id="pendingProject">
+
+0
+
+</h2>
+
+</div>
+
+<div class="card">
+
+<p>Completed</p>
+
+<h2 id="completeProject">
+
+0
+
+</h2>
+
+</div>
+
+</section>
+
+<section class="search">
+
+<input
+
+type="text"
+
+id="search"
+
+placeholder="Cari Project...">
+
+</section>
+
+<section>
+
+<h2>
+
+Project List
+
+</h2>
+
+<div id="projectList">
+
+<div class="empty">
+
+Belum ada project.
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ADD PROJECT -->
+
+<div
+
+class="modal"
+
+id="projectModal">
+
+<div class="modal-content">
+
+<h2>
+
+Tambah Project
+
+</h2>
+
+<input
+
+type="text"
+
+id="name"
+
+placeholder="Nama Project">
+
+<input
+
+type="text"
+
+id="network"
+
+placeholder="Network">
+
+<input
+
+type="text"
+
+id="website"
+
+placeholder="Website">
+
+<select id="taskType">
+
+<option value="Daily">
+
+Daily
+
+</option>
+
+<option value="Weekly">
+
+Weekly
+
+</option>
+
+<option value="Testnet">
+
+Testnet
+
+</option>
+
+<option value="Mainnet">
+
+Mainnet
+
+</option>
+
+<option value="One Time">
+
+One Time (Follow, Retweet, dll)
+
+</option>
+
+</select>
+
+<input
+
+type="date"
+
+id="deadline">
+
+<select id="priority">
+
+<option value="High">
+
+🔴 High
+
+</option>
+
+<option value="Medium">
+
+🟡 Medium
+
+</option>
+
+<option value="Low">
+
+🟢 Low
+
+</option>
+
+</select>
+
+<select id="status">
+
+<option value="Active">
+
+🟢 Active
+
+</option>
+
+<option value="Pending">
+
+🟡 Pending
+
+</option>
+
+<option value="Complete">
+
+🔵 Complete
+
+</option>
+
+</select>
+
+<textarea
+
+id="note"
+
+placeholder="Catatan"
+
+rows="5">
+
+</textarea>
+
+<div class="modal-button">
+
+<button id="saveProject">
+
+Simpan
+
+</button>
+
+<button id="closeModal">
+
+Batal
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- EDIT PROJECT -->
+
+<div
+
+class="modal"
+
+id="editModal">
+
+<div class="modal-content">
+
+<h2>
+
+Edit Project
+
+</h2>
+
+<input
+
+type="hidden"
+
+id="editId">
+
+<input
+
+type="text"
+
+id="editName"
+
+placeholder="Nama Project">
+
+<input
+
+type="text"
+
+id="editNetwork"
+
+placeholder="Network">
+
+<input
+
+type="text"
+
+id="editWebsite"
+
+placeholder="Website">
+
+<select id="editTaskType">
+
+<option value="Daily">
+
+Daily
+
+</option>
+
+<option value="Weekly">
+
+Weekly
+
+</option>
+
+<option value="Testnet">
+
+Testnet
+
+</option>
+
+<option value="Mainnet">
+
+Mainnet
+
+</option>
+
+<option value="One Time">
+
+One Time (Follow, Retweet, dll)
+
+</option>
+
+</select>
+
+<input
+type="date"
+id="editDeadline">
+
+<select id="editPriority">
+
+<option value="High">
+
+🔴 High
+
+</option>
+
+<option value="Medium">
+
+🟡 Medium
+
+</option>
+
+<option value="Low">
+
+🟢 Low
+
+</option>
+
+</select>
+
+<select id="editStatus">
+
+<option value="Active">
+
+🟢 Active
+
+</option>
+
+<option value="Pending">
+
+🟡 Pending
+
+</option>
+
+<option value="Complete">
+
+🔵 Complete
+
+</option>
+
+</select>
+
+<textarea
+id="editNote"
+rows="5"
+placeholder="Catatan">
+
+</textarea>
+
+<div class="modal-button">
+
+<button id="updateProject">
+
+Update
+
+</button>
+
+<button id="closeEditModal">
+
+Batal
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- TOAST -->
+
+<div id="toast" class="toast">
+
+<span id="toastText">
+
+Berhasil
+
+</span>
+
+</div>
+
+<!-- LOADING -->
+
+<div id="loading" class="loading">
+
+<div class="spinner"></div>
+
+<p>
+
+Loading...
+
+</p>
+
+</div>
+
+<footer>
+
+<p>
+
+Airdrop Hub v3.0
+
+</p>
+
+</footer>
+
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
