@@ -725,8 +725,8 @@ color:#94a3b8;
 
 .toolbar{
     display:grid;
-    grid-template-columns:repeat(3,minmax(220px,1fr));
-    gap:12px;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
     width:100%;
     margin:15px 0;
     align-items:start;
@@ -758,10 +758,6 @@ color:#94a3b8;
     transition:.2s;
 }
 
-.dropbtn:hover{
-    background:#3a4250;
-}
-
 .dropbtn span{
 
     display:flex;
@@ -774,6 +770,16 @@ color:#94a3b8;
 
     font-weight:600;
 
+    overflow:hidden;
+
+    white-space:nowrap;
+
+    text-overflow:ellipsis;
+
+}
+
+.dropbtn:hover{
+    background:#3a4250;
 }
 
 .dropbtn i:first-child{
@@ -858,29 +864,30 @@ color:#94a3b8;
 @media (max-width:768px){
 
     .toolbar{
-        grid-template-columns:1fr;
+        grid-template-columns:repeat(3,1fr);
+        gap:6px;
     }
 
     .dropbtn{
-        height:58px;
-        padding:0 12px;
-        font-size:14px;
+        height:48px;
+        padding:0 8px;
+        font-size:12px;
     }
 
     .dropbtn span{
-        gap:8px;
+        gap:4px;
     }
 
     .dropbtn i:first-child{
-        font-size:16px;
+        font-size:14px;
     }
 
     .arrow{
-        font-size:11px;
+        font-size:10px;
     }
 
     .dropdown-content{
-        top:66px;
+        top:calc(100% + 6px);
     }
 
 }
