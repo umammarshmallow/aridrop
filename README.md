@@ -1,2 +1,2 @@
-# aridrop
+# airdropgratisan
 crypto airdrop dashboard
